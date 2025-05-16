@@ -1,0 +1,9 @@
+{
+  "name": "测试",
+  "description": "描述",
+  "impact": 2,
+  "powers": [
+    "test_origins:test_power",
+    "test_origins:test_power_4"
+  ]
+}
