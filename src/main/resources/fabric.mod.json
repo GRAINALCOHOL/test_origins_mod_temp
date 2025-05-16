@@ -15,6 +15,9 @@
 	"icon": "assets/testoriginsmod/icon.png",
 	"environment": "*",
 	"entrypoints": {
+		"client": [
+			"cn.grainalcohol.client.ExtraKeyBinds"
+		],
 		"main": [
 			"cn.grainalcohol.TestOriginsMod"
 		]
