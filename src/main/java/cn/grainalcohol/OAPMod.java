@@ -1,5 +1,7 @@
 package cn.grainalcohol;
 
+import cn.grainalcohol.init.OAPBientityActionType;
+import cn.grainalcohol.init.OAPBientityConditionType;
 import cn.grainalcohol.init.OAPEntityActionType;
 import cn.grainalcohol.init.OAPEntityConditionType;
 import net.fabricmc.api.ModInitializer;
@@ -27,6 +29,8 @@ public class OAPMod implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 		OAPEntityConditionType.init();
+		OAPBientityConditionType.init();
 		OAPEntityActionType.init();
+		OAPBientityActionType.init();
 	}
 }

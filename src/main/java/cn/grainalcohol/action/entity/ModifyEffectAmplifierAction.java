@@ -11,11 +11,11 @@ import net.minecraft.util.Identifier;
 
 import java.util.function.BiConsumer;
 
-public class ModifyEffectDurationAction implements BiConsumer<SerializableData.Instance, Entity> {
+public class ModifyEffectAmplifierAction implements BiConsumer<SerializableData.Instance, Entity> {
     public static final SerializableData DATA = new SerializableData()
             .add("effect", SerializableDataTypes.STRING)
             .add("operation", SerializableDataTypes.STRING)
-            .add("value", SerializableDataTypes.INT, 20)
+            .add("value", SerializableDataTypes.INT, 1)
             .add("is_ambient", SerializableDataTypes.BOOLEAN, false)
             .add("show_particles", SerializableDataTypes.BOOLEAN, true)
             .add("show_icon", SerializableDataTypes.BOOLEAN, true);
@@ -28,7 +28,7 @@ public class ModifyEffectDurationAction implements BiConsumer<SerializableData.I
 
         String effectId = data.getString("effect");
         String operation = data.getString("operation");
-        int value = data.getInt("value");// 操作数值，如果操作类型是add或set则以tick为单位
+        int value = data.getInt("value");
         boolean isAmbient = data.getBoolean("is_ambient");
         boolean showParticles = data.getBoolean("show_particles");
         boolean showIcon = data.getBoolean("show_icon");
@@ -40,40 +40,23 @@ public class ModifyEffectDurationAction implements BiConsumer<SerializableData.I
         StatusEffectInstance effectInstance = livingTarget.getStatusEffect(effect);
         if ((effectInstance == null)) return; // 没有该效果
 
-        if(effectInstance.isInfinite()){
-            if ("set".equals(operation) && value != Integer.MAX_VALUE) {
-                //移除效果并应用新效果
-                livingTarget.removeStatusEffect(effect);
-                livingTarget.addStatusEffect(new StatusEffectInstance(
-                        effect,
-                        value,
-                        effectInstance.getAmplifier(),
-                        isAmbient,
-                        showParticles,
-                        showIcon
-                ));
-            }
-            // 其他操作类型
-            return;
-        }
-
-        // 根据操作类型计算新的持续时间
-        int duration = effectInstance.getDuration();
-        int newDuration = switch (operation) {
-            case "add" -> duration + value; // 增加指定ticks数
-            case "multiply" -> duration * value; // 乘以指定倍数
-            case "multiply_total" -> duration * (1 + value);
-            case "set" -> value; // 直接设置为指定值
-            default -> duration; // 未知操作类型则保持原样
+        // 根据操作类型计算新的倍率
+        int amplifier = effectInstance.getAmplifier();
+        int newAmplifier = switch (operation) {
+            case "add" -> Math.max(0, amplifier + value); // 增加指定倍率
+            case "set" -> Math.max(0, value); // 直接设置为指定倍率
+            default -> amplifier; // 未知操作类型则保持原样
         };
+
+        newAmplifier = Math.min(newAmplifier, 254);
 
         // 先移除原有的效果实例
         livingTarget.removeStatusEffect(effect);
 
         livingTarget.addStatusEffect(new StatusEffectInstance(
                 effect,
-                newDuration,
-                effectInstance.getAmplifier(), // 保持原有效果等级
+                effectInstance.getDuration(),
+                newAmplifier,
                 isAmbient,
                 showParticles,
                 showIcon
