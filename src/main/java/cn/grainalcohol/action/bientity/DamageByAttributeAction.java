@@ -1,4 +1,4 @@
-package cn.grainalcohol.action;
+package cn.grainalcohol.action.bientity;
 
 import cn.grainalcohol.util.EntityUtil;
 import io.github.apace100.calio.data.SerializableData;
@@ -45,7 +45,7 @@ public class DamageByAttributeAction implements BiConsumer<SerializableData.Inst
         System.out.println("Base attribute value: " + baseValue);
         float damageAmount = switch (operation) {
             case "add" -> baseValue + value;
-            case "multiply_base" -> baseValue * value;
+            case "multiply" -> baseValue * value;
             case "multiply_total" -> baseValue * (1 + value);
             default -> baseValue;
         };

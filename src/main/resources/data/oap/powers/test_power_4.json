@@ -6,9 +6,9 @@
         "type": "origins:area_of_effect",
         "radius": 8,
         "bientity_action": {
-            "type": "test_origins:damage_by_attribute",
+            "type": "oap:damage_by_attribute",
             "attribute": "minecraft:generic.max_health",
-            "operation": "multiply_base",
+            "operation": "multiply",
                 "value": 1,
             "damage_type": "minecraft:out_of_world"
         }

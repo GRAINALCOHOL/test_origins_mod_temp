@@ -1,6 +1,6 @@
 {
   "replace": false,
   "origins": [
-    "test_origins:test"
+    "oap:test"
   ]
 }

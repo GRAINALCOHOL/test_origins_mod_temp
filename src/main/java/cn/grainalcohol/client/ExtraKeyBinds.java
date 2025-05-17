@@ -16,7 +16,7 @@ public class ExtraKeyBinds implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         for(String key : keys) {
-            KeyBinding binding = new KeyBinding("key.origins."+key+"_active", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "category.origins");
+            KeyBinding binding = new KeyBinding("key.oap."+key+"_active", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "category.origins");
             ApoliClient.registerPowerKeybinding(binding.getTranslationKey(), binding);
             ApoliClient.registerPowerKeybinding(key, binding);
             KeyBindingHelper.registerKeyBinding(binding);

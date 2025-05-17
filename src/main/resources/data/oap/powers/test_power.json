@@ -15,7 +15,7 @@
     },
     "recover": {
         "condition": {
-            "type": "test_origins:game_day",
+            "type": "oap:game_day",
             "compare_to": 2,
             "comparison": "=="
         },

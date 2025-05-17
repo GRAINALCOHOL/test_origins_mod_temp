@@ -1,15 +1,15 @@
 package cn.grainalcohol.init;
 
-import cn.grainalcohol.TestOriginsMod;
+import cn.grainalcohol.OAPMod;
 import cn.grainalcohol.condition.GameDayCondition;
 import io.github.apace100.apoli.power.factory.condition.ConditionFactory;
 import io.github.apace100.apoli.registry.ApoliRegistries;
 import net.minecraft.entity.Entity;
 import net.minecraft.registry.Registry;
 
-public class TestEntityConditionType {
+public class OAPEntityConditionType {
     public static final ConditionFactory<Entity> GAME_DAY = new ConditionFactory<>(
-            TestOriginsMod.id("game_day"),
+            OAPMod.id("game_day"),
             GameDayCondition.DATA,
             new GameDayCondition()
     );
