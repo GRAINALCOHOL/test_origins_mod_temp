@@ -10,7 +10,6 @@ import org.lwjgl.glfw.GLFW;
 import java.util.List;
 
 public class ExtraKeyBinds implements ClientModInitializer {
-
     List<String> keys = List.of("ternary","quaternary","quinary","senary","septenary","octonary","nonary","denary");
 
     @Override

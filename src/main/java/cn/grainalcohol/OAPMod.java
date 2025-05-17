@@ -1,11 +1,12 @@
 package cn.grainalcohol;
 
-import cn.grainalcohol.init.OAPBientityActionType;
-import cn.grainalcohol.init.OAPBientityConditionType;
-import cn.grainalcohol.init.OAPEntityActionType;
-import cn.grainalcohol.init.OAPEntityConditionType;
+import cn.grainalcohol.init.*;
+import cn.grainalcohol.power.ActionOnEffectGainedPower;
+import io.github.apace100.apoli.power.factory.PowerFactories;
+import io.github.apace100.apoli.registry.ApoliRegistries;
 import net.fabricmc.api.ModInitializer;
 
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,5 +33,6 @@ public class OAPMod implements ModInitializer {
 		OAPBientityConditionType.init();
 		OAPEntityActionType.init();
 		OAPBientityActionType.init();
+		OAPPowerType.init();
 	}
 }
